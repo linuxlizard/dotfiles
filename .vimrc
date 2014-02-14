@@ -105,3 +105,8 @@ nnoremap <silent> <F5> :TlistToggle<CR>
 " see also: http://vim.wikia.com/wiki/Search_across_multiple_lines
 " :s/dbg\([12]\)((\(\_.\{-}\)));/dbg\1(\2);
 
+" 14-Feb-2014 ; execute command, output goes into current buffer
+" :read !cmd
+" for example:
+" :read !ls include/cheaders
+
