@@ -16,11 +16,17 @@ export PATH
 
 alias ls='ls -F'
 alias ll='ls -AlF'
-alias h='history|tail'
+alias h='history|tail -20'
 alias psme='ps waux | grep davep'
 alias lsd='ls -d */'
-alias findc="find . -name '*.c'"
-alias findh="find . -name '*.h'"
+
+findc () { find ${1:-.} -name '*.c'; }
+findh () { find ${1:-.} -name '*.h'; }
+findf () { find ${1:-.} -type f; }
+findS () { find ${1:-.} -name '*.S'; }
+# find makefiles
+findm() { find . -name Makefile -o -name makefile -o -name '*.mk'; }
+alias xg="xargs grep"
 
 function lk () { ls -lrt $@ | tail; }
 
@@ -31,8 +37,15 @@ export P4USER=dpoole
 export P4CLIENT=davep_latches_jssl
 export P4EDITOR=vim
 alias pout="p4 opened"
-alias pdiff="p4 diff -dubwl"
 alias ppend="p4 changes -u dpoole -s pending"
+pdiff () 
+{ 
+    if [ "$1" == "-f" ]; then
+        p4 diff -duwbl -f $(rp $2);
+    else
+        p4 diff -duwbl $(rp $1);
+    fi
+}
 
 alias smbc='smbclient -A ~/.auth'
 
@@ -50,9 +63,4 @@ export LESSHISTFILE=/dev/null
 # stfu, part 2
 unset PROMPT_COMMAND
 
-# scan code shortcuts
-function src() 
-{ 
-    cd ~/src/jssl/common/scan/src/ 
-}
-
+alias xo="xclip -o"
