@@ -64,3 +64,9 @@ export LESSHISTFILE=/dev/null
 unset PROMPT_COMMAND
 
 alias xo="xclip -o"
+
+# davep 28-Jan-2015
+hl() { hdump $1 | less; }
+hh() { hdump $1 | head ; }
+iv() { identify -verbose $@ | less; }
+
