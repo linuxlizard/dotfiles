@@ -1,0 +1,8 @@
+!# dot-Xdefaults
+!# .Xdefaults
+
+XTerm*font:                     7x14
+XTerm*scrollBar:                True
+XTerm*background:               beige
+XTerm*foreground:               Black
+
