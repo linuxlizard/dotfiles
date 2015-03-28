@@ -65,6 +65,9 @@ unset PROMPT_COMMAND
 
 alias xo="xclip -o"
 
+export EDITOR=vim
+export VISUAL=vim
+
 # davep 28-Jan-2015
 hl() { hdump $1 | less; }
 hh() { hdump $1 | head ; }
