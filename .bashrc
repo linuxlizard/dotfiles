@@ -24,9 +24,10 @@ findc () { find ${1:-.} -name '*.c'; }
 findh () { find ${1:-.} -name '*.h'; }
 findf () { find ${1:-.} -type f; }
 findS () { find ${1:-.} -name '*.S'; }
+alias xg="xargs grep"
 # find makefiles
 findm() { find . -name Makefile -o -name makefile -o -name '*.mk'; }
-alias xg="xargs grep"
+findv() { find . -name '*.v' -o -name '*.sv' -o -name '*.vh' ; }
 
 function lk () { ls -lrt $@ | tail; }
 
@@ -46,6 +47,12 @@ pdiff ()
         p4 diff -duwbl $(rp $1);
     fi
 }
+
+# for Subversion
+export SVN_EDITOR=vim
+alias svst='svn status -q '
+alias svd='svn diff '
+
 
 alias smbc='smbclient -A ~/.auth'
 
@@ -70,6 +77,12 @@ export VISUAL=vim
 
 # davep 28-Jan-2015
 hl() { hdump $1 | less; }
-hh() { hdump $1 | head ; }
+hh() { for f in $@ ; do (hdump $f | head) ; done; }
 iv() { identify -verbose $@ | less; }
+
+# davep 26-Mar-2015
+gs() { git status; }
+gd() { git diff $@ ; }
+gc() { git commit $@; }
+m() { make $@; }
 
