@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+# for f in add sub mul div mod ; do ln -s op $f ; done
+
 import sys
 import os
 import operator
