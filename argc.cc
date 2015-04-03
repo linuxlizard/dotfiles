@@ -21,30 +21,6 @@ struct channel
 
 vector<struct channel> channel_list;
 
-class ValueError : public exception
-{
-    public:
-        const string badstr;
-
-        ValueError(string s) :
-            exception(),
-            badstr { s }
-            {}
-};
-
-unsigned int mkuint( string& s )
-{
-    char *end_ptr;
-    unsigned int num = strtoul( s.c_str(), &end_ptr, 10 );
-
-    if( *end_ptr != 0 ) {
-        /* error */
-        throw ValueError{ s };
-    }
-
-    return num;
-}
-
 int cpp_main( vector<string>& cpp_argv )
 {
     for( auto s : cpp_argv ) {
@@ -59,11 +35,11 @@ int cpp_main( vector<string>& cpp_argv )
             /* channel number */
             ++s;
             try { 
-                int channel_num = mkuint(*s);
+                int channel_num = stoul(*s);
                 channel_list.push_back( { string{"none"}, channel_num } );
             }
-            catch ( ValueError& e ) {
-                cerr << "invalid integer \""<<e.badstr<<"\" for channel number\n";
+            catch ( invalid_argument& e ) {
+                cerr << "error: " << e.what() << " for channel argument \"" << *s << "\"\n";
                 return EXIT_FAILURE;
             }
         }
