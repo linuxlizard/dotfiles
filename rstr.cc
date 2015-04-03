@@ -9,6 +9,7 @@
 #include <random>
 #include <algorithm>
 #include <chrono>
+#include <functional>
 
 #include <gmp.h>
 
