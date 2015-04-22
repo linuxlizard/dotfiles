@@ -1,4 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+
+from __future__ import print_function
 
 import sys
 import ctypes
@@ -35,8 +37,8 @@ for arg in sys.argv[1:] :
     uint32 = ctypes.c_uint32( n )
     int32 = ctypes.c_int32( n )
 
-    print n,
-    print uint32,
-    print int32,
-    print "%#x" % uint32.value
+    print(n, end=' ')
+    print(uint32, end=' ')
+    print(int32, end=' ')
+    print("%#x" % uint32.value)
 
