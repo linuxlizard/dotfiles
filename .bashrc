@@ -32,21 +32,20 @@ findv() { find . -name '*.v' -o -name '*.sv' -o -name '*.vh' ; }
 function lk () { ls -lrt $@ | tail; }
 
 # for Perforce
-export P4PORT=10.71.120.88:1666
 #export P4PORT=prp4.marvell.com:1666
-export P4USER=dpoole
-export P4CLIENT=davep_latches_jssl
-export P4EDITOR=vim
-alias pout="p4 opened"
-alias ppend="p4 changes -u dpoole -s pending"
-pdiff () 
-{ 
-    if [ "$1" == "-f" ]; then
-        p4 diff -duwbl -f $(rp $2);
-    else
-        p4 diff -duwbl $(rp $1);
-    fi
-}
+#export P4USER=dpoole
+#export P4CLIENT=davep_flipflop_sandbox
+#export P4EDITOR=vim
+#alias pout="p4 opened"
+#alias ppend="p4 changes -u dpoole -s pending"
+#pdiff () 
+#{ 
+#    if [ "$1" == "-f" ]; then
+#        p4 diff -duwbl -f $(rp $2);
+#    else
+#        p4 diff -duwbl $(rp $1);
+#    fi
+#}
 
 # for Subversion
 export SVN_EDITOR=vim
@@ -85,4 +84,8 @@ gs() { git status; }
 gd() { git diff $@ ; }
 gc() { git commit $@; }
 m() { make $@; }
+
+export PYTHONPATH=~/src/sandbox/pytools:~/src/sandbox/scan/pytools
+alias p3=python3
+
 
