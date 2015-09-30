@@ -2,7 +2,7 @@
 syntax on
 set viminfo='20,"50
 set cindent
-set sts=4
+set sts=0
 set shiftwidth=4
 set et
 set cin
@@ -13,6 +13,9 @@ set showmatch
 set tw=79
 set ai
 set is
+
+set noet
+set ts=4
 
 map <C-i> 0i#<Esc>0j
 map <C-P> 0i//<Esc>0j
@@ -109,4 +112,8 @@ nnoremap <silent> <F5> :TlistToggle<CR>
 " :read !cmd
 " for example:
 " :read !ls include/cheaders
+
+set number
+
+set mls=5
 
