@@ -24,6 +24,7 @@ findc () { find ${1:-.} -name '*.c'; }
 findh () { find ${1:-.} -name '*.h'; }
 findf () { find ${1:-.} -type f; }
 findS () { find ${1:-.} -name '*.S'; }
+findpy () { find ${1:-.} -name '*.py'; }
 alias xg="xargs grep"
 # find makefiles
 findm() { find . -name Makefile -o -name makefile -o -name '*.mk'; }
@@ -80,7 +81,8 @@ hh() { for f in $@ ; do (hdump $f | head) ; done; }
 iv() { identify -verbose $@ | less; }
 
 # davep 26-Mar-2015
-gs() { git status; }
+gs() { git status $@; }
+gsu() { git status -uno $@; }
 gd() { git diff $@ ; }
 gc() { git commit $@; }
 m() { make $@; }
@@ -88,4 +90,5 @@ m() { make $@; }
 export PYTHONPATH=~/src/sandbox/pytools:~/src/sandbox/scan/pytools
 alias p3=python3
 
+export dt=dpoole@deep-thought.cp.local:tmp/.
 
