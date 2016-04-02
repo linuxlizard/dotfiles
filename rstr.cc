@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <chrono>
 #include <functional>
+#include <exception>
 
 #include <gmp.h>
 
@@ -59,19 +60,23 @@ string random_hex_string( size_t length )
 int main(int argc, char *argv[] )
 {
     unsigned long int num_bits;
-    char *end_ptr;
 
-        num_bits = 204;
+    num_bits = 204;
+
     if( argc >= 2 ) {
-        num_bits = strtoul( argv[1], &end_ptr, 10 );
-        if( *end_ptr != 0 ) {
+        string s {argv[1]};
+        try { 
+            num_bits = stoul(s);
+        }
+        catch ( invalid_argument& e ) {
+            cerr << "error: " << e.what() << " for channel argument \"" << s << "\"\n";
             return EXIT_FAILURE;
         }
     }
 
     // divide by 4 to get nibbles
     string str = random_hex_string(num_bits/4);
-//    cout << str << '\n';
+    cout << str << '\n';
 
     // random 204 bit number with GMP
     // http://www.cplusplus.com/reference/random/random_device/random_device/
