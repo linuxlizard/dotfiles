@@ -9,14 +9,14 @@ set cin
 set vb t_vb=
 set ruler
 set showmatch
-"set tw=0
-set tw=79
+set tw=0
+"set tw=79
 set ai
 set is
 set number
 
-"set noet
-"set ts=4
+set noet
+set ts=4
 
 map <C-i> 0i#<Esc>0j
 map <C-P> 0i//<Esc>0j
@@ -67,7 +67,8 @@ endfunction
 " add my usual "davep date" stamp on cheap hack code
 " /* davep 05-Aug-2005 ;  */
 function! Davestamp()
-    let s:today = strftime( "%d-%b-%Y" )
+    let s:today = strftime( "%Y%m%d" )
+    "let s:today = strftime( "%d-%b-%Y" )
     if &filetype =~ "python" 
         execute "normal O# davep " . s:today . " ;  \<Esc>"
     else 
@@ -95,7 +96,7 @@ map <C-l> :call DaveDebug()<CR>
 "set tags+=/Users/davep/src/jbigkit/tags
 
 " 16-Feb-2010 ; change comment color so black background not so harsh
-highlight Comment ctermfg=lightblue
+"highlight Comment ctermfg=lightblue
 
 " 10-Mar-2010 ; I fucking hate fucking unity shit shit fuck
 "set tags+=~/src/gemstone/tags
@@ -116,3 +117,28 @@ nnoremap <silent> <F5> :TlistToggle<CR>
 
 
 
+" from SylvanB 06-Nov-2015
+" figure out if a file uses 'expandtab' (et) instead
+" see current window (buffer #0), lines 1, n for leading tab or space
+"function SetET()
+" let ntabs = len(filter(getbufline(winbufnr(0), 1, 222), 'v:val =~ "^\\t"' ))
+" let netab = len(filter(getbufline(winbufnr(0), 1, 222), 'v:val =~ "^ "'   ))
+" if &expandtab
+"   if netab < ntabs
+"     set noexpandtab
+"   endif
+" else
+"   if ntabs < netab
+"     set expandtab
+"   endif
+" endif
+"endfunction
+"autocmd vimrc BufReadPost * call SetET()
+
+set modelines=5
+
+" my modeline to use tabs
+" # vim: ts=4:sts=0:noet
+
+" modeline to use spaces
+" // vim: ts=4:sts=4:et
