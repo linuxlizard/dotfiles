@@ -135,6 +135,7 @@ nnoremap <silent> <F5> :TlistToggle<CR>
 "endfunction
 "autocmd vimrc BufReadPost * call SetET()
 
+set modeline
 set modelines=5
 
 " my modeline to use tabs
@@ -142,3 +143,9 @@ set modelines=5
 
 " modeline to use spaces
 " // vim: ts=4:sts=4:et
+
+" turn on visual display of tabs
+set listchars=tab:•-
+set list
+highlight SpecialKey ctermfg=grey guifg=grey
+
