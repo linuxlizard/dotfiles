@@ -4,16 +4,17 @@ set viminfo='20,"50
 set cindent
 set sts=4
 set shiftwidth=4
-set et
+"set et
 set cin
 set vb t_vb=
 set ruler
 set showmatch
-"set tw=0
-set tw=79
+set tw=0
+"set tw=79
 set ai
 set is
 set number
+set ts=4
 
 "set noet
 "set ts=4
@@ -67,7 +68,8 @@ endfunction
 " add my usual "davep date" stamp on cheap hack code
 " /* davep 05-Aug-2005 ;  */
 function! Davestamp()
-    let s:today = strftime( "%d-%b-%Y" )
+    let s:today = strftime( "%Y%m%d" )
+    "let s:today = strftime( "%d-%b-%Y" )
     if &filetype =~ "python" 
         execute "normal O# davep " . s:today . " ;  \<Esc>"
     else 
@@ -81,7 +83,9 @@ function! DavestampHash()
 endfunction
 
 function! DaveDebug()
-    execute "normal Odbg2( \"%s %d\\n\", __FUNCTION__, __LINE__ );"
+"    execute "normal Odbg2( \"%s %d\\n\", __FUNCTION__, __LINE__ );"
+"    execute "normal Oprintf( \"%s %d\\n\", __FUNCTION__, __LINE__ );"
+    execute "normal Oprintk( KERN_NOTICE \"%s %d\\n\", __func__, __LINE__ );"
 endfunction
 
 map <C-h> :call Davehdr()<CR>
@@ -95,7 +99,7 @@ map <C-l> :call DaveDebug()<CR>
 "set tags+=/Users/davep/src/jbigkit/tags
 
 " 16-Feb-2010 ; change comment color so black background not so harsh
-highlight Comment ctermfg=lightblue
+"highlight Comment ctermfg=lightblue
 
 " 10-Mar-2010 ; I fucking hate fucking unity shit shit fuck
 "set tags+=~/src/gemstone/tags
@@ -114,5 +118,22 @@ nnoremap <silent> <F5> :TlistToggle<CR>
 " for example:
 " :read !ls include/cheaders
 
+set modeline
+set modelines=5
 
+" turn on when working in tab-only code
+set ts=4
+set sts=0
+set noet
+
+" my modeline to use tabs
+" # vim: ts=4:sts=0:noet
+
+" modeline to use spaces
+" // vim: ts=4:sts=4:et
+
+" davep 20161202 visual display of tabs
+set listchars=tab:•…
+set list
+highlight SpecialKey ctermfg=grey
 
