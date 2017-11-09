@@ -145,7 +145,7 @@ set modelines=5
 " // vim: ts=4:sts=4:et
 
 " turn on visual display of tabs
-set listchars=tab:•-
+set listchars=tab:•…
 set list
 highlight SpecialKey ctermfg=grey guifg=grey
 
