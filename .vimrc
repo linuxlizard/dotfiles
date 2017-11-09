@@ -4,7 +4,7 @@ set viminfo='20,"50
 set cindent
 set sts=4
 set shiftwidth=4
-set et
+"set et
 set cin
 set vb t_vb=
 set ruler
@@ -14,6 +14,7 @@ set tw=0
 set ai
 set is
 set number
+set ts=4
 
 set noet
 set ts=4
@@ -82,7 +83,9 @@ function! DavestampHash()
 endfunction
 
 function! DaveDebug()
-    execute "normal Odbg2( \"%s %d\\n\", __FUNCTION__, __LINE__ );"
+"    execute "normal Odbg2( \"%s %d\\n\", __FUNCTION__, __LINE__ );"
+"    execute "normal Oprintf( \"%s %d\\n\", __FUNCTION__, __LINE__ );"
+    execute "normal Oprintk( KERN_NOTICE \"%s %d\\n\", __func__, __LINE__ );"
 endfunction
 
 map <C-h> :call Davehdr()<CR>
@@ -115,7 +118,24 @@ nnoremap <silent> <F5> :TlistToggle<CR>
 " for example:
 " :read !ls include/cheaders
 
+set modeline
+set modelines=5
 
+" turn on when working in tab-only code
+set ts=4
+set sts=0
+set noet
+
+" my modeline to use tabs
+" # vim: ts=4:sts=0:noet
+
+" modeline to use spaces
+" // vim: ts=4:sts=4:et
+
+" davep 20161202 visual display of tabs
+set listchars=tab:•…
+set list
+highlight SpecialKey ctermfg=grey
 
 " from SylvanB 06-Nov-2015
 " figure out if a file uses 'expandtab' (et) instead
