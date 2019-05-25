@@ -1,0 +1,17 @@
+[user]
+        email = dpoole@cradlepoint.com
+        name = David Poole
+[core]
+        editor = vim
+        autocrlf = false
+        safecrlf = true
+[color]
+        ui = false
+
+ [alias]
+ lol = log --graph --decorate --pretty=oneline --abbrev-commit
+ lola = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen (%cr) %C(Bold blue)<%an>%Creset' --abbrev-commit --all
+ lolat = log --graph --decorate --pretty=oneline --abbrev-commit --all --
+ qlol = log HEAD~30..HEAD --decorate --pretty=oneline --abbrev-commit
+[gitreview]
+	username = dpoole
