@@ -7,7 +7,7 @@
 set -eu
 
 counter=0
-for f in /sys/class/net/wlp* ; 
+for f in /sys/class/net/wl* ; 
 do
 	. $f/uevent
 	if [ $# -eq 0 ] ; 
