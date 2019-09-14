@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -eux
+
+# force set the terminal size when connected via serial
+# https://unix.stackexchange.com/questions/106644/how-to-change-the-width-of-remote-serial-console
+
+stty rows 42 cols 193
