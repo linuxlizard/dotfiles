@@ -5,20 +5,24 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
 # User specific aliases and functions
 export PS1='...\h:\W% '
 
 export HISTCONTROL=ignoredups:erasedups
 
 PATH=$HOME/bin:$PATH
-PATH=$PATH:/opt/armgcc/bin
 export PATH
 
 alias ls='ls -F'
 alias ll='ls -AlF'
 alias h='history|tail -20'
-alias psme='ps waux | grep davep'
+#alias psme='ps waux | grep dpoole'
 alias lsd='ls -d */'
+function psme () { ps -eF | grep ^dpoole; }
 
 findc () { find ${1:-.} -name '*.c'; }
 findh () { find ${1:-.} -name '*.h'; }
@@ -28,31 +32,10 @@ findpy () { find ${1:-.} -name '*.py'; }
 alias xg="xargs grep"
 # find makefiles
 findm() { find . -name Makefile -o -name makefile -o -name '*.mk'; }
+findjs() { find . -name '*.js'; }
 findv() { find . -name '*.v' -o -name '*.sv' -o -name '*.vh' ; }
 
 function lk () { ls -lrt $@ | tail; }
-
-# for Perforce
-#export P4PORT=prp4.marvell.com:1666
-#export P4USER=dpoole
-#export P4CLIENT=davep_flipflop_sandbox
-#export P4EDITOR=vim
-#alias pout="p4 opened"
-#alias ppend="p4 changes -u dpoole -s pending"
-#pdiff () 
-#{ 
-#    if [ "$1" == "-f" ]; then
-#        p4 diff -duwbl -f $(rp $2);
-#    else
-#        p4 diff -duwbl $(rp $1);
-#    fi
-#}
-
-# for Subversion
-export SVN_EDITOR=vim
-alias svst='svn status -q '
-alias svd='svn diff '
-
 
 alias smbc='smbclient -A ~/.auth'
 
@@ -84,11 +67,43 @@ iv() { identify -verbose $@ | less; }
 gs() { git status $@; }
 gsu() { git status -uno $@; }
 gd() { git diff $@ ; }
+gdc() { git diff --cached $@ ; }
 gc() { git commit $@; }
 m() { make $@; }
+gb() { git --no-pager branch $@; }
 
-export PYTHONPATH=~/src/sandbox/pytools:~/src/sandbox/scan/pytools
 alias p3=python3
 
-export dt=dpoole@deep-thought.cp.local:tmp/.
+export COCONUT_TOOLCHAIN=/home/dpoole/src/toolchain/64bit_build_bins
+
+s() { cd /home/dpoole/src/coconut/service_manager/services/gps; }
+d() { cd /home/dpoole/src/coconut/test/standalone/gps; }
+t() { cd /home/dpoole/src/coconut; }
+gt() { cd /home/dpoole/src/coconut.garnet; }
+ht() { cd /home/dpoole/src/coconut.hulk; }
+st() { cd /home/dpoole/src/coconut.spock; }
+ct() { cd /home/dpoole/src/coconut.congo; }
+ms() { make service_manager; }
+mall() { make service_manager lib tools; }
+
+mt7612() { cd kernel_modules/ralink_wireless/wireless_mt7612e/rlt_wifi; }
+
+dts() { cd /home/dpoole/src/coconut.bulk/qcom/linux/arch/arm/boot/dts; }
+
+export xlib=lib/python-cp
+export xsms=service_manager/services
+
+cdtest() { pushd test/legacy/standalone/wifi; }
+
+cdtest() { pushd test/legacy/standalone/wifi ; }
+cdcoco() { cd ~/src/coconut; }
+
+kk() { eval $(/usr/bin/keychain --eval id_rsa); }
+
+cpcp() { scp coconut.img ad:/var/lib/tftpboot/. ; }
+
+putI() { scp coconut.bin I:tmp/. && ssh I "openssl sha512 ~/tmp/coconut.bin" ; }
+
+# disable tests in servicemanager/Makefile because slow&annoying
+fixsmm() { sed -e 's/^all:.*$/all: .all/' -e 's/^default:.*$/default: all/' -i service_manager/Makefile ; } 
 

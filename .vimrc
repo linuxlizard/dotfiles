@@ -16,9 +16,6 @@ set is
 set number
 set ts=4
 
-set noet
-set ts=4
-
 map <C-i> 0i#<Esc>0j
 map <C-P> 0i//<Esc>0j
 map <C-O> xj
@@ -32,11 +29,6 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'
 
 " 19-Nov-04 ; automatically insert comment leaders
 set formatoptions+=ro
-
-" 24-dec-04
-"set tags+=/Users/davep/src/openssl-0.9.7e/tags
-" 26-dec-04
-"set tags+=/Users/davep/src/net-snmp-5.3.1/tags
 
 au BufNewFile,BufRead *.py set nocindent
 au BufNewFile,BufRead *.py set nosmartindent
@@ -85,29 +77,17 @@ endfunction
 function! DaveDebug()
 "    execute "normal Odbg2( \"%s %d\\n\", __FUNCTION__, __LINE__ );"
 "    execute "normal Oprintf( \"%s %d\\n\", __FUNCTION__, __LINE__ );"
-    execute "normal Oprintk( KERN_NOTICE \"%s %d\\n\", __func__, __LINE__ );"
+    execute "normal Oprintk( KERN_NOTICE \"davep %s %d\\n\", __func__, __LINE__ );"
 endfunction
 
 map <C-h> :call Davehdr()<CR>
 map <C-d> :call Davestamp()<CR>
 map <C-l> :call DaveDebug()<CR>
 
-" 25-July-2007
-"set tags+=/Users/davep/src/whitehawk-release/firmware/tags
-
-" 27-Aug-2007
-"set tags+=/Users/davep/src/jbigkit/tags
-
 " 16-Feb-2010 ; change comment color so black background not so harsh
 "highlight Comment ctermfg=lightblue
 
-" 10-Mar-2010 ; I fucking hate fucking unity shit shit fuck
-"set tags+=~/src/gemstone/tags
-
 "autocmd BufEnter * :syntax sync fromstart
-
-" 08-Jun-2011 ; add taglist (Thanks to Bryan Allen)
-nnoremap <silent> <F5> :TlistToggle<CR>
 
 " 24-Aug-2012 ; too useful to lose; multi-line regex to fix dbg1(( ));
 " see also: http://vim.wikia.com/wiki/Search_across_multiple_lines
@@ -137,35 +117,14 @@ set listchars=tab:•…
 set list
 highlight SpecialKey ctermfg=grey
 
-" from SylvanB 06-Nov-2015
-" figure out if a file uses 'expandtab' (et) instead
-" see current window (buffer #0), lines 1, n for leading tab or space
-"function SetET()
-" let ntabs = len(filter(getbufline(winbufnr(0), 1, 222), 'v:val =~ "^\\t"' ))
-" let netab = len(filter(getbufline(winbufnr(0), 1, 222), 'v:val =~ "^ "'   ))
-" if &expandtab
-"   if netab < ntabs
-"     set noexpandtab
-"   endif
-" else
-"   if ntabs < netab
-"     set expandtab
-"   endif
-" endif
-"endfunction
-"autocmd vimrc BufReadPost * call SetET()
+" https://github.com/vim/vim/issues/989
+let g:python_recommended_style = 0
 
-set modeline
-set modelines=5
+" 20180411
+let $xsms = "service_manager/services/"
+let $xlib = "lib/python-cp/"
+let $xtest = "test/legacy/standalone/wifi/"
+let $xgps = "service_manager/services/gps"
 
-" my modeline to use tabs
-" # vim: ts=4:sts=0:noet
-
-" modeline to use spaces
-" // vim: ts=4:sts=4:et
-
-" turn on visual display of tabs
-set listchars=tab:•…
-set list
-highlight SpecialKey ctermfg=grey guifg=grey
-
+color default
+set background=dark

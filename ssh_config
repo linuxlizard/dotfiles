@@ -1,74 +1,62 @@
-# .ssh/config
+host cp
+    hostname hg.cradlepoint.com
+    port 8022
+    ForwardX11 no
+    Compression yes
+    User dpoole
+#    DynamicForward 18080
+
+host marvin
+	hostname marvin.local
+	User dpoole
 
 host I
-    hostname www.mbuf.com
-#    port 22
+    hostname iguana.mbuf.com
     port 40905
     ForwardX11 no
     Compression yes
-    localforward 5252 localhost:25
-    localforward 1110 localhost:110
-    localforward 8080 localhost:80
-    localforward 5353 localhost:5353
+    User davep
 
-host I2
-    hostname www.mbuf.com
-    port 443
-    ForwardX11 no
-    Compression yes
-    localforward 5252 iguana.mbuf.com:25
-    localforward 1110 iguana.mbuf.com:110
-    localforward 8080 iguana.mbuf.com:80
-    localforward 5353 iguana.mbuf.com:5353
+host dt
+	hostname deep-thought.local
+	user dpoole
 
-host i
-    hostname www.mbuf.com
-    port 40905
-    ForwardX11 no
-    Compression yes
-    localforward 8080 iguana.mbuf.com:80
+host ff
+	hostname flipflop.local
+	user davep
+	ciphers -aes256-gcm@openssh.com,-aes256-gcm
 
-host i2
-    hostname 172.16.0.2
-    port 40905
-    ForwardX11 no
-    Compression yes
+host ad
+	hostname arthurdent.local
+	user dpoole
 
-host turniptruck
-    hostname 10.71.130.228
-    ForwardX11 yes
-    Compression no
+host 192.168.0.1
+	user admin
+	UserKnownHostsFile /dev/null
+	StrictHostKeyChecking no
 
-host AWS
-    hostname ec2-184-72-5-122.us-west-1.compute.amazonaws.com
-    port 22
-    ForwardX11 no
-    Compression yes
-    localforward 8080 ip-10-160-31-98:80
+host 172.16.22.1
+	user admin
+	UserKnownHostsFile /dev/null
+	StrictHostKeyChecking no
 
-host tarsier
-    hostname 10.71.130.68
-    ForwardX11 yes
-    Compression no
+host 172.16.16.1
+	user admin
+	UserKnownHostsFile /dev/null
+	StrictHostKeyChecking no
 
-host ashok
-    hostname 10.71.130.85
-    ForwardX11 yes
-    Compression no
+host 172.17.22.1
+	user admin
+	UserKnownHostsFile /dev/null
+	StrictHostKeyChecking no
 
-host ericluttman
-    hostname 10.71.130.166
-    ForwardX11 yes
-    Compression no
+host 172.16.17.1
+        user admin
+        UserKnownHostsFile /dev/null
+        StrictHostKeyChecking no
 
-# Kevin Thompson's machine
-host b0-pc16
-    hostname 10.71.130.166
-    ForwardX11 yes
-    Compression no
-
-host thompson-thinkc
-    hostname 10.71.130.110
-    ForwardX11 yes
-    Compression no
+host 172.16.90.1
+        user admin
+        UserKnownHostsFile /dev/null
+        StrictHostKeyChecking no
 
