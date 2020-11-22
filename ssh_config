@@ -1,62 +1,112 @@
-host cp
-    hostname hg.cradlepoint.com
-    port 8022
-    ForwardX11 no
-    Compression yes
-    User dpoole
-#    DynamicForward 18080
-
-host marvin
-	hostname marvin.local
-	User dpoole
+# .ssh/config
 
 host I
+    hostname iguana.mbuf.com
+    user davep
+#    port 22
+    port 40905
+    ForwardX11 no
+    Compression yes
+    DynamicForward localhost:8181
+#    localforward 5252 localhost:25
+#    localforward 1110 localhost:110
+#    localforward 8080 localhost:80
+#    localforward 5353 localhost:5353
+
+host I2
+    hostname www.mbuf.com
+    port 443
+    ForwardX11 no
+    Compression yes
+    localforward 5252 iguana.mbuf.com:25
+    localforward 1110 iguana.mbuf.com:110
+    localforward 8080 iguana.mbuf.com:80
+    localforward 5353 iguana.mbuf.com:5353
+
+host i
+    user davep
     hostname iguana.mbuf.com
     port 40905
     ForwardX11 no
     Compression yes
-    User davep
 
 host dt
-	hostname deep-thought.local
+	hostname deep-thought.local.
 	user dpoole
 
-host ff
-	hostname flipflop.local
-	user davep
-	ciphers -aes256-gcm@openssh.com,-aes256-gcm
+host deep-thought
+	hostname deep-thought.local.
+	user dpoole
+	ProxyJump trillian
 
-host ad
-	hostname arthurdent.local
+host dt2 
+	hostname 172.86.160.12
+	user dpoole
+    ForwardX11 no
+    Compression no
+    DynamicForward localhost:8181
+
+host trillian
+#	hostname trillian.cp.local
+	hostname 172.86.160.5
 	user dpoole
 
-host 192.168.0.1
-	user admin
-	UserKnownHostsFile /dev/null
-	StrictHostKeyChecking no
+host trillian2
+#	hostname trillian.cp.local
+	hostname 172.86.160.5
+	user dpoole
+    ForwardX11 no
+    Compression no
+    DynamicForward localhost:8181
+#	ProxyJump marvin.local.
+
+#host 192.168.0.1
+##	user admin
+##	UserKnownHostsFile /dev/null
+#	StrictHostKeyChecking no
+#	user admin
+#	PreferredAuthentications keyboard-interactive,password
 
 host 172.16.22.1
 	user admin
 	UserKnownHostsFile /dev/null
 	StrictHostKeyChecking no
 
-host 172.16.16.1
-	user admin
-	UserKnownHostsFile /dev/null
-	StrictHostKeyChecking no
-
-host 172.17.22.1
+host 172.16.11.1
 	user admin
 	UserKnownHostsFile /dev/null
 	StrictHostKeyChecking no
 
 host 172.16.17.1
-        user admin
-        UserKnownHostsFile /dev/null
-        StrictHostKeyChecking no
+	user admin
+	UserKnownHostsFile /dev/null
+	StrictHostKeyChecking no
 
+#host 172.16.227.1
+#	user admin
+#	UserKnownHostsFile /dev/null
+#	StrictHostKeyChecking no
+
+#host 172.16.253.1
+#	user admin
+#	UserKnownHostsFile /dev/null
+#	StrictHostKeyChecking no
+#
 host 172.16.90.1
-        user admin
-        UserKnownHostsFile /dev/null
-        StrictHostKeyChecking no
+	user admin
+	UserKnownHostsFile /dev/null
+	StrictHostKeyChecking no
+
+host total-perspective-vortex
+	hostname 172.16.22.10
+	user pi
+
+host pihole
+	hostname 172.16.22.10
+	user pi
+
+host blackbox
+	hostname 172.16.22.14
+	user davep
+	port 40905
 
