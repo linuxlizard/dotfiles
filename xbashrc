@@ -1,0 +1,9 @@
+#send-keys 'export GCC_COLORS=""' C-m
+#send-keys 'echo 7 > /proc/sys/kernel/printk' C-m
+send-keys 'unalias ls ll lk h' C-m
+send-keys 'ls() { /bin/ls -F $@; }' C-m 
+send-keys 'll() { /bin/ls -AlF $@; }' C-m
+send-keys 'lk() { /bin/ls -AlF $@; }' C-m
+send-keys 'h() { history $@; }' C-m
+send-keys 'mall() { make service_manager lib tools ; }' C-m
+

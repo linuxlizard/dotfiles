@@ -1,0 +1,4 @@
+send-keys 'python -i' C-m 
+send-keys 'import services' C-m 
+send-keys 'from cp import _qcom_wlan_iwext as qw' C-m 
+send-keys 'w = services.get("wireless")' C-m 
