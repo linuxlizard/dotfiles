@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# set the terminal title
+#
+echo -en "\033]0;$(whoami)@${HOSTNAME}\a"
