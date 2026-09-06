@@ -76,34 +76,21 @@ alias p3=python3
 
 export COCONUT_TOOLCHAIN=/home/dpoole/src/toolchain/64bit_build_bins
 
-s() { cd /home/dpoole/src/coconut/service_manager/services/gps; }
-d() { cd /home/dpoole/src/coconut/test/standalone/gps; }
-t() { cd /home/dpoole/src/coconut; }
-gt() { cd /home/dpoole/src/coconut.garnet; }
-ht() { cd /home/dpoole/src/coconut.hulk; }
-st() { cd /home/dpoole/src/coconut.spock; }
-ct() { cd /home/dpoole/src/coconut.congo; }
 ms() { make service_manager; }
 mall() { make service_manager lib tools; }
-
-mt7612() { cd kernel_modules/ralink_wireless/wireless_mt7612e/rlt_wifi; }
-
-dts() { cd /home/dpoole/src/coconut.bulk/qcom/linux/arch/arm/boot/dts; }
 
 export xlib=lib/python-cp
 export xsms=service_manager/services
 
 cdtest() { pushd test/legacy/standalone/wifi; }
 
-cdtest() { pushd test/legacy/standalone/wifi ; }
-cdcoco() { cd ~/src/coconut; }
-
 kk() { eval $(/usr/bin/keychain --eval id_rsa); }
-
-cpcp() { scp coconut.img ad:/var/lib/tftpboot/. ; }
-
-putI() { scp coconut.bin I:tmp/. && ssh I "openssl sha512 ~/tmp/coconut.bin" ; }
 
 # disable tests in servicemanager/Makefile because slow&annoying
 fixsmm() { sed -e 's/^all:.*$/all: .all/' -e 's/^default:.*$/default: all/' -i service_manager/Makefile ; } 
+
+p() { cd .. ; }
+
+# 20251107 ; nuke it from orbit, git style
+cleanit() { git clean -xdfq && git submodule foreach git clean -xdfq ; }
 
